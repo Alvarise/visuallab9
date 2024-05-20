@@ -1,0 +1,31 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:VolumeSliderAvalonia">
+	
+  <Design.PreviewWith>
+    <controls:VolumeSlider />
+  </Design.PreviewWith>
+
+  <Style Selector="controls|VolumeSlider">
+    <!-- Set Defaults -->
+    <Setter Property="Template">
+      <ControlTemplate>
+		  <StackPanel Margin="20">
+			  <TextBlock IsVisible="{TemplateBinding IsSliderVisible}" Text="{Binding FormattedSliderValue,RelativeSource={RelativeSource TemplatedParent}}"
+						  HorizontalAlignment="Center"/>
+			  
+			  <Grid IsVisible="{TemplateBinding IsSliderVisible}" ColumnDefinitions="*,Auto">
+				  <Slider x:Name="slider" Value="{Binding SliderValue, RelativeSource={RelativeSource TemplatedParent}}" />
+				  <Button Command="{Binding CloseButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" 
+						  Margin="10,0,0,0" Grid.Column="1" CornerRadius="10">Close</Button>
+			  </Grid>
+
+			  <Button CornerRadius="10" Command="{Binding OpenSliderCommand, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding !IsSliderVisible, RelativeSource={RelativeSource TemplatedParent}}" 
+					  Background="Gray" Height="100" Width="100">
+				  <Image Width="50" Height="50" Source="/Assets/volume.png"></Image>
+			  </Button>
+		  </StackPanel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>
